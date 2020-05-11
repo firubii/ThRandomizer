@@ -685,7 +685,37 @@ namespace THRandomizer
 
                     richTextBox1.AppendText("\nRandomizing timer data...");
 
-                    //Do the randomization
+                    for (int i = 0; i < ecl.WaitOffsets.Count; i++)
+                    {
+                        writer.BaseStream.Seek((int)ecl.WaitOffsets[i] + 0x10, SeekOrigin.Begin);
+
+                        ushort inst = BitConverter.ToUInt16(inFile, (int)ecl.WaitOffsets[i] + 0x4);
+                        bool paramMask = false;
+                        //Toggle for respecting variables in instructions
+                        if (!ignoreVar.Checked) paramMask = Convert.ToBoolean(BitConverter.ToUInt16(inFile, (int)ecl.WaitOffsets[i] + 0x8));
+
+                        switch (inst)
+                        {
+                            case 23:
+                                {
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                    break;
+                                }
+                            case 548:
+                                {
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                    break;
+                                }
+                            default:
+                                {
+                                    break;
+                                }
+                        }
+
+                    }
                 }
                 if (rngDiffFlags.Checked)
                 {

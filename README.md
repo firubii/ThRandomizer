@@ -7,6 +7,7 @@ A WIP and fairly basic randomizer for Touhou games. As of right now, it only sup
 Current features:
 * Bullet randomization
 * Entity randomization
+* Timer/Wait instruction randomization
 * Difficulty flag randomization **This breaks a lot of things and probably will crash**
 
 Currently supported games:
@@ -14,9 +15,13 @@ Currently supported games:
 
 ---
 
+Issues that currently need to be addressed:
+* Entity randomization often causes the game to remove the ability to fire, or kill the player instantly
+
+---
+
 Planned features:
 * A better UI
-* Timer/Wait instruction randomization (Maybe, if it doesn't break everything)
 * (Possibly) stage background randomization
 * DAT archive unpacking
 * Exporting randomized files back into a DAT or in a thpatch-compatible directory
