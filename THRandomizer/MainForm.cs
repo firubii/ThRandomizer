@@ -89,17 +89,12 @@ namespace THRandomizer
 
                     for (int i = 0; i < ecl.BulletOffsets.Count; i++)
                     {
-                        writer.BaseStream.Seek((int)ecl.BulletOffsets[i], SeekOrigin.Begin);
-
-                        writer.BaseStream.Seek(0x4, SeekOrigin.Current);
-                        ushort inst = BitConverter.ToUInt16(inFile, (int)writer.BaseStream.Position);
-                        writer.BaseStream.Seek(0x4, SeekOrigin.Current);
-                        bool paramMask = false;
-
-                        //Toggle for respecting variables in instructions
-                        if (!ignoreVar.Checked) paramMask = Convert.ToBoolean(BitConverter.ToUInt16(inFile, (int)writer.BaseStream.Position));
-
                         writer.BaseStream.Seek((int)ecl.BulletOffsets[i] + 0x10, SeekOrigin.Begin);
+                        
+                        ushort inst = BitConverter.ToUInt16(inFile, (int)ecl.BulletOffsets[i] + 0x4);
+                        bool paramMask = false;
+                        //Toggle for respecting variables in instructions
+                        if (!ignoreVar.Checked) paramMask = Convert.ToBoolean(BitConverter.ToUInt16(inFile, (int)ecl.BulletOffsets[i] + 0x8));
 
                         switch (inst)
                         {
@@ -138,8 +133,8 @@ namespace THRandomizer
                             case 606:
                                 {
                                     writer.BaseStream.Seek(0x4, SeekOrigin.Current);
-                                    writer.Write(rng.Next(0, 11));
-                                    writer.Write(rng.Next(0, 11));
+                                    writer.Write(rng.Next(0, (int)bulletMax.Value + 1));
+                                    writer.Write(rng.Next(0, (int)bulletMax.Value + 1));
                                     break;
                                 }
                             case 607:
@@ -187,7 +182,7 @@ namespace THRandomizer
                                                 }
                                             case 0x00000002:
                                                 {
-                                                    writer.Write(rng.Next(0,2));
+                                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
                                                     writer.Write(-999999);
                                                     if (inst == 609 || inst == 611)
                                                     {
@@ -204,7 +199,7 @@ namespace THRandomizer
                                                 }
                                             case 0x00000004:
                                                 {
-                                                    writer.Write(rng.Next(0, 1000));
+                                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
                                                     writer.Write(-999999);
                                                     if (inst == 609 || inst == 611)
                                                     {
@@ -221,8 +216,8 @@ namespace THRandomizer
                                                 }
                                             case 0x00000008:
                                                 {
-                                                    writer.Write(rng.Next(0, 1000));
-                                                    writer.Write(rng.Next(0, 1000));
+                                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
                                                     if (inst == 609 || inst == 611)
                                                     {
                                                         WriteRandomFloat(writer, rng, inFile, paramMask);
@@ -238,8 +233,8 @@ namespace THRandomizer
                                                 }
                                             case 0x00000010:
                                                 {
-                                                    writer.Write(rng.Next(0, 1000));
-                                                    writer.Write(rng.Next(0, 1000));
+                                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
                                                     if (inst == 609 || inst == 611)
                                                     {
                                                         WriteRandomFloat(writer, rng, inFile, paramMask);
@@ -255,8 +250,8 @@ namespace THRandomizer
                                                 }
                                             case 0x00000020:
                                                 {
-                                                    writer.Write(rng.Next(0, 1000));
-                                                    writer.Write(rng.Next(0, 1000));
+                                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
                                                     if (inst == 609 || inst == 611)
                                                     {
                                                         WriteRandomFloat(writer, rng, inFile, paramMask);
@@ -272,8 +267,8 @@ namespace THRandomizer
                                                 }
                                             case 0x00000040:
                                                 {
-                                                    writer.Write(rng.Next(0, 1000));
-                                                    writer.Write(rng.Next(0, 1000));
+                                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
                                                     if (inst == 609 || inst == 611)
                                                     {
                                                         WriteRandomFloat(writer, rng, inFile, paramMask);
@@ -289,7 +284,7 @@ namespace THRandomizer
                                                 }
                                             case 0x00000100:
                                                 {
-                                                    writer.Write(rng.Next(0, 1000));
+                                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
 
                                                     int w = 0x00;
 
@@ -314,7 +309,7 @@ namespace THRandomizer
                                                 }
                                             case 0x00000200:
                                                 {
-                                                    writer.Write(rng.Next(0, 1000));
+                                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
                                                     writer.Write(-999999);
                                                     if (inst == 609 || inst == 611)
                                                     {
@@ -331,7 +326,7 @@ namespace THRandomizer
                                                 }
                                             case 0x00000400:
                                                 {
-                                                    writer.Write(rng.Next(0, 1000));
+                                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
                                                     writer.Write(-999999);
                                                     if (inst == 609 || inst == 611)
                                                     {
@@ -380,7 +375,7 @@ namespace THRandomizer
                                                 }
                                             case 0x00001000:
                                                 {
-                                                    writer.Write(rng.Next(0, 1000));
+                                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
                                                     writer.Write(-999999);
                                                     if (inst == 609 || inst == 611)
                                                     {
@@ -397,7 +392,7 @@ namespace THRandomizer
                                                 }
                                             case 0x20000000:
                                                 {
-                                                    writer.Write(rng.Next(0, 1000));
+                                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
                                                     writer.Write(-999999);
                                                     if (inst == 609 || inst == 611)
                                                     {
@@ -472,10 +467,10 @@ namespace THRandomizer
                             case 701:
                                 {
                                     writer.BaseStream.Seek(0x4, SeekOrigin.Current);
-                                    writer.Write(rng.Next());
-                                    writer.Write(rng.Next());
-                                    writer.Write(rng.Next());
-                                    writer.Write(rng.Next());
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
                                     break;
                                 }
                             case 705:
@@ -503,23 +498,184 @@ namespace THRandomizer
                     rng = new Random(_seed);
 
                     richTextBox1.AppendText("\nRandomizing entity data...");
+                    
+                    //Need to figure out why this generates things that instantly kill the player or make the player unable to shoot
 
                     for (int i = 0; i < ecl.EntityOffsets.Count; i++)
                     {
-                        writer.BaseStream.Seek((int)ecl.EntityOffsets[i], SeekOrigin.Begin);
-
-                        writer.BaseStream.Seek(0x4, SeekOrigin.Current);
-                        ushort inst = BitConverter.ToUInt16(inFile, (int)writer.BaseStream.Position);
-                        writer.BaseStream.Seek(0x4, SeekOrigin.Current);
-                        bool paramMask = false;
-
-                        //Toggle for respecting variables in instructions
-                        if (!ignoreVar.Checked) paramMask = Convert.ToBoolean(BitConverter.ToUInt16(inFile, (int)writer.BaseStream.Position));
-
                         writer.BaseStream.Seek((int)ecl.EntityOffsets[i] + 0x10, SeekOrigin.Begin);
 
+                        ushort inst = BitConverter.ToUInt16(inFile, (int)ecl.EntityOffsets[i] + 0x4);
+                        bool paramMask = false;
+                        //Toggle for respecting variables in instructions
+                        if (!ignoreVar.Checked) paramMask = Convert.ToBoolean(BitConverter.ToUInt16(inFile, (int)ecl.EntityOffsets[i] + 0x8));
+                        
+                        switch (inst)
+                        {
+                            case 300:
+                            case 301:
+                            case 304:
+                            case 305:
+                            case 309:
+                            case 310:
+                            case 311:
+                            case 312:
+                                {
+                                    uint strLen = BitConverter.ToUInt32(inFile, (int)writer.BaseStream.Position);
+                                    writer.BaseStream.Seek(strLen + 0x4, SeekOrigin.Current);
 
-                        //This is next to do
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                    break;
+                                }
+                            case 306:
+                                {
+                                    writer.BaseStream.Seek(0x4, SeekOrigin.Current);
+                                    writer.Write(rng.Next(0, 5));
+                                    break;
+                                }
+                            case 400:
+                            case 402:
+                                {
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    break;
+                                }
+                            case 401:
+                            case 403:
+                            case 405:
+                            case 436:
+                            case 437:
+                                {
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                    writer.Write(ECLRandomSettings.AnimationTypes[rng.Next(0, ECLRandomSettings.AnimationTypes.Length)]);
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    break;
+                                }
+                            case 404:
+                            case 406:
+                            case 428:
+                                {
+                                    WriteRandomAngle(writer, rng, inFile, paramMask);
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    break;
+                                }
+                            case 407:
+                            case 429:
+                            case 431:
+                                {
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                    writer.Write(ECLRandomSettings.AnimationTypes[rng.Next(0, ECLRandomSettings.AnimationTypes.Length)]);
+                                    WriteRandomAngle(writer, rng, inFile, paramMask);
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    break;
+                                }
+                            case 408:
+                            case 410:
+                                {
+                                    WriteRandomAngle(writer, rng, inFile, paramMask);
+                                    WriteRandomAngle(writer, rng, inFile, paramMask);
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                    break;
+                                }
+                            case 409:
+                            case 411:
+                                {
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                    writer.Write(ECLRandomSettings.AnimationTypes[rng.Next(0, ECLRandomSettings.AnimationTypes.Length)]);
+                                    WriteRandomAngle(writer, rng, inFile, paramMask);
+                                    WriteRandomAngle(writer, rng, inFile, paramMask);
+                                    WriteRandomAngle(writer, rng, inFile, paramMask);
+                                    break;
+                                }
+                            case 412:
+                            case 413:
+                                {
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                    writer.Write(ECLRandomSettings.AnimationTypes[rng.Next(0, ECLRandomSettings.AnimationTypes.Length)]);
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    break;
+                                }
+                            case 420:
+                            case 422:
+                                {
+                                    WriteRandomAngle(writer, rng, inFile, paramMask);
+                                    WriteRandomAngle(writer, rng, inFile, paramMask);
+                                    WriteRandomAngle(writer, rng, inFile, paramMask);
+                                    WriteRandomAngle(writer, rng, inFile, paramMask);
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    break;
+                                }
+                            case 421:
+                            case 423:
+                                {
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                    writer.Write(ECLRandomSettings.AnimationTypes[rng.Next(0, ECLRandomSettings.AnimationTypes.Length)]);
+                                    WriteRandomAngle(writer, rng, inFile, paramMask);
+                                    WriteRandomAngle(writer, rng, inFile, paramMask);
+                                    WriteRandomAngle(writer, rng, inFile, paramMask);
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    break;
+                                }
+                            case 425:
+                            case 426:
+                                {
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    break;
+                                }
+                            case 430:
+                                {
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                    break;
+                                }
+                            case 502:
+                            case 503:
+                                {
+                                    writer.Write(ECLRandomSettings.EntityFlags[rng.Next(0, ECLRandomSettings.EntityFlags.Length)]);
+                                    break;
+                                }
+                            case 504:
+                                {
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    break;
+                                }
+                            case 511:
+                                {
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                    break;
+                                }
+                            case 515:
+                                {
+                                    writer.Write(rng.Next(0, (int)randMax.Value + 1));
+                                    break;
+                                }
+                            case 565:
+                                {
+                                    WriteRandomFloat(writer, rng, inFile, paramMask);
+                                    break;
+                                }
+                            default:
+                                {
+                                    break;
+                                }
+                        }
 
                     }
                 }

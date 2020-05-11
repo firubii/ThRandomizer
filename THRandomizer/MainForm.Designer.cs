@@ -43,6 +43,12 @@
             this.seed = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.ignoreVar = new System.Windows.Forms.CheckBox();
+            this.randMax = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.bulletMax = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.randMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bulletMax)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -196,11 +202,67 @@
             this.ignoreVar.Text = "Overwrite Variable Access";
             this.ignoreVar.UseVisualStyleBackColor = true;
             // 
+            // randMax
+            // 
+            this.randMax.Location = new System.Drawing.Point(333, 116);
+            this.randMax.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.randMax.Name = "randMax";
+            this.randMax.Size = new System.Drawing.Size(83, 20);
+            this.randMax.TabIndex = 15;
+            this.randMax.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(223, 118);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(84, 13);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Limit Integers to:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(223, 144);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(107, 13);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "Limit Bullet counts to:";
+            // 
+            // bulletMax
+            // 
+            this.bulletMax.Location = new System.Drawing.Point(333, 142);
+            this.bulletMax.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.bulletMax.Name = "bulletMax";
+            this.bulletMax.Size = new System.Drawing.Size(83, 20);
+            this.bulletMax.TabIndex = 17;
+            this.bulletMax.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(455, 475);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.bulletMax);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.randMax);
             this.Controls.Add(this.ignoreVar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.seed);
@@ -220,6 +282,8 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Touhou Randomizer";
+            ((System.ComponentModel.ISupportInitialize)(this.randMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bulletMax)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -242,6 +306,10 @@
         private System.Windows.Forms.TextBox seed;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox ignoreVar;
+        private System.Windows.Forms.NumericUpDown randMax;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown bulletMax;
     }
 }
 
