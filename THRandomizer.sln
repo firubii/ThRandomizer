@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THRandomizer", "THRandomizer\THRandomizer.csproj", "{BBCE23CA-9901-45F1-BFFA-57A895A92FF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThRandomizer", "THRandomizer\ThRandomizer.csproj", "{BBCE23CA-9901-45F1-BFFA-57A895A92FF1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

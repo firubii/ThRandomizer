@@ -518,10 +518,8 @@ namespace THRandomizer
 
                         writer.BaseStream.Seek((int)ecl.EntityOffsets[i] + 0x10, SeekOrigin.Begin);
 
-                        switch (inst)
-                        {
-                            
-                        }
+
+                        //This is next to do
 
                     }
                 }
