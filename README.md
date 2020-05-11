@@ -5,7 +5,8 @@ A WIP and fairly basic randomizer for Touhou games. As of right now, it only sup
 ---
 
 Current features:
-* Bullet data randomization (Colors, speed, amounts, complex patterns, etc)
+* Bullet randomization
+* Entity randomization
 * Difficulty flag randomization **This breaks a lot of things and probably will crash**
 
 Currently supported games:
@@ -15,7 +16,6 @@ Currently supported games:
 
 Planned features:
 * A better UI
-* Entity randomization
 * Timer/Wait instruction randomization (Maybe, if it doesn't break everything)
 * (Possibly) stage background randomization
 * DAT archive unpacking
